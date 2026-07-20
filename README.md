@@ -1,7 +1,10 @@
 # StratX Opt-In Funnel — LIVE
 
 Built 2026-07-20 with the funnel-architect plugin (`agashic-funnel-architect`, installed at user scope).
-Status: **LIVE** at https://stratx-checklist.vercel.app — deployed to Tommy's existing Vercel account (tommyaem), Vercel project `stratx-checklist`.
+
+**Canonical URL: https://stratx-checklist.onrender.com** — Render static site (same platform/account as `app.stratx.tech`, workspace "Strat-X"), deployed from `github.com/TommyAEM/stratx-checklist-funnel` (public repo, auto-deploys on push to `main`).
+
+A second copy also lives at https://stratx-checklist.vercel.app (Vercel, `tommyaem` account) — kept as a live backup, not the one to share. Both were deployed straight from existing authenticated CLIs; no new hosting accounts were created either way.
 
 Lead capture: form posts to `https://formsubmit.co/sales@stratx.tech` (free, no account created — email-based activation only). A test submission was made 2026-07-20 to trigger formsubmit's one-time "Activate Form" email — **check sales@stratx.tech and click the activation link before sharing this URL**, or real leads will silently not arrive.
 
@@ -27,15 +30,20 @@ Traffic (IG/FB/X posts, community group) → squeeze page → email captured →
 
 ## Redeploying after edits
 
+Render auto-deploys on push (this is now the canonical copy):
 ```
 cd Documents/StratX-Funnel
+git add -A && git commit -m "..." && git push
+```
+Vercel backup copy (optional, manual):
+```
 vercel --prod --yes
 ```
 
 ## Still open (not blocking — funnel works today)
 
 1. **Activate formsubmit** (see above) — one click in sales@stratx.tech inbox, first thing.
-2. **Custom domain**: currently `stratx-checklist.vercel.app`. To move to `go.stratx.tech`, add the domain in the Vercel project settings and point a CNAME at Vercel — needs Tommy's DNS access at the registrar.
+2. **Custom domain**: currently `stratx-checklist.onrender.com`. To move to `go.stratx.tech`, add a custom domain in the Render service settings and point a CNAME at the target Render gives you — needs Tommy's DNS access wherever stratx.tech's registrar/DNS panel is (nameservers currently `apollo/athena.dns-parking.com`).
 3. **Analytics**: no tracking pixel yet — add GA4/Meta pixel before running any paid traffic (plugin has an analytics-setup skill for this).
 4. **Upgrade lead capture**: formsubmit.co emails each lead one at a time — fine at low volume. Move to ConvertKit/MailerLite once volume justifies a real list + welcome sequence.
 5. **Traffic — this is the actual client-finding step, the funnel just converts it:**
