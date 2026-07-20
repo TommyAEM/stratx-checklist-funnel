@@ -82,6 +82,8 @@
           <input type="hidden" name="_next" value="https://stratx-checklist.onrender.com/thank-you.html">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="source" id="utm-source" value="direct">
+          <input type="hidden" name="campaign" id="utm-campaign" value="none">
           <input type="email" name="email" placeholder="Your best email address" required aria-label="Email address">
           <button class="btn" type="submit">Send Me the Free Checklist →</button>
         </form>
@@ -114,5 +116,14 @@
       <p class="fineprint">© StratX · <a href="https://stratx.tech">stratx.tech</a></p>
     </footer>
   </div>
+  <script>
+    (function () {
+      var p = new URLSearchParams(window.location.search);
+      var src = p.get('utm_source') || p.get('utm_medium');
+      var camp = p.get('utm_campaign') || p.get('utm_content');
+      if (src) document.getElementById('utm-source').value = src;
+      if (camp) document.getElementById('utm-campaign').value = camp;
+    })();
+  </script>
 </body>
 </html>
