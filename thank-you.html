@@ -35,6 +35,13 @@
     .next { border-color: #2c1b45; box-shadow: 0 0 44px rgba(139, 47, 243, 0.12); }
     .next .tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.14em; color: var(--violet-glow); text-transform: uppercase; margin-bottom: 10px; }
     .pillars { color: var(--text-2); font-size: 14px; margin: 0 0 18px; }
+    .community { border-color: #113322; box-shadow: 0 0 44px rgba(0, 200, 83, 0.10); }
+    .community .tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.14em; color: var(--green-2); text-transform: uppercase; margin-bottom: 10px; }
+    .perks { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0 22px; padding: 0; }
+    .perks li { font-size: 14px; color: var(--text-2); }
+    .perks li b { display: block; color: var(--text); font-size: 14.5px; margin-bottom: 2px; }
+    .free-note { font-size: 12.5px; color: #6b6b6b; margin-top: 12px; }
+    @media (max-width: 520px) { .perks { grid-template-columns: 1fr; } }
     footer { border-top: 1px solid #1c1c1c; margin-top: 56px; padding: 34px 0 44px; }
     .tagline { font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.12em; font-size: 13px; color: var(--text); margin-bottom: 14px; }
     .risk { font-size: 12px; color: #7a7a7a; max-width: 62em; margin-bottom: 10px; }
@@ -57,6 +64,20 @@
         <h2>Don't want to wait?</h2>
         <p>Read the full 7-Gate Strategy Validation Checklist right now in your browser — printable version included.</p>
         <a class="btn" href="downloads/stratx-validation-checklist.html">Open the Checklist Now →</a>
+      </div>
+
+      <div class="card community">
+        <p class="tag">/ Join the community</p>
+        <h2>StratX Community — research-first, no hype.</h2>
+        <p>A small, growing group for people who'd rather understand a strategy than chase an alert. Market structure, FVG, liquidity, ORB, Monte Carlo — context, not clickbait.</p>
+        <ul class="perks">
+          <li><b>🔬 Research-first discussion</b>Talk methodology with people who actually test their ideas.</li>
+          <li><b>✅ No buy/sell alerts</b>If you want "buy now" calls, this isn't for you — and that's the point.</li>
+          <li><b>🧠 Early access</b>See new validated strategies as they're published, before anywhere else.</li>
+          <li><b>💬 Direct line</b>Talk directly with the people building StratX.</li>
+        </ul>
+        <a class="btn" href="https://www.facebook.com/groups/stratxcommunity">Join StratX Community →</a>
+        <p class="free-note">Free to join. Private group — a couple of questions on request, that's it.</p>
       </div>
 
       <div class="card next">
