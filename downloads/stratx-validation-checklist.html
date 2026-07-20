@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The 7-Gate Strategy Validation Checklist | StratX</title>
+  <meta name="description" content="The 7-Gate Strategy Validation Checklist — the research standards a systematic trading strategy must pass before it earns the right to go live.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=IBM+Plex+Sans:wght@400;500&display=swap">
+  <style>
+    :root {
+      --bg: #000000; --bg-2: #141414;
+      --text: #FFFFFF; --text-2: #A5A5A5;
+      --green: #00C853; --green-2: #7CFF4F;
+      --violet: #8B2FF3; --violet-glow: #A855F7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; line-height: 1.65; }
+    h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+    .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px 40px; }
+    header { padding: 28px 0 8px; }
+    header img { height: 40px; width: auto; }
+    .kicker { font-family: 'Space Grotesk', sans-serif; font-size: 13px; letter-spacing: 0.14em; color: var(--green); text-transform: uppercase; margin: 30px 0 14px; }
+    h1 { font-size: clamp(26px, 4vw, 38px); line-height: 1.15; font-weight: 600; margin-bottom: 14px; }
+    .intro { color: var(--text-2); font-size: 16px; margin-bottom: 8px; }
+    .gate { background: var(--bg-2); border: 1px solid #242424; border-left: 3px solid var(--green); border-radius: 10px; padding: 22px 24px; margin: 22px 0; }
+    .gate h2 { font-size: 19px; margin-bottom: 8px; }
+    .gate h2 .n { color: var(--green); font-size: 13px; letter-spacing: 0.1em; display: block; margin-bottom: 4px; }
+    .gate p { color: var(--text-2); font-size: 15px; margin-bottom: 12px; }
+    .gate ul { list-style: none; }
+    .gate li { padding: 5px 0; font-size: 15px; color: var(--text); }
+    .gate li::before { content: "☐  "; color: var(--green-2); }
+    .fail { border-left-color: var(--violet); }
+    .fail h2 .n { color: var(--violet-glow); }
+    .rule { color: var(--text-2); font-size: 15px; border: 1px dashed #333; border-radius: 10px; padding: 18px 22px; margin: 26px 0; }
+    .rule strong { color: var(--text); }
+    footer { border-top: 1px solid #1c1c1c; margin-top: 44px; padding: 30px 0 10px; }
+    .tagline { font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.12em; font-size: 13px; color: var(--text); margin-bottom: 14px; }
+    .risk { font-size: 12px; color: #7a7a7a; max-width: 62em; margin-bottom: 10px; }
+    .fineprint { font-size: 12px; color: #5c5c5c; }
+    .fineprint a { color: #7a7a7a; }
+    @media print {
+      body { background: #fff; color: #111; }
+      :root { --bg-2: #f5f5f5; --text: #111; --text-2: #444; }
+      .gate { border-color: #ddd; box-shadow: none; }
+      header img { filter: invert(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="../assets/stratx-logo-header.png" alt="Strat X" width="120" height="40">
+    </header>
+
+    <p class="kicker">/ StratX research standards</p>
+    <h1>The 7-Gate Strategy Validation Checklist</h1>
+    <p class="intro">A trading strategy is not "good" because its equity curve looks good. It is good if — and only if — it survives every gate below. Run any strategy through these gates in order. The first gate it fails is where the work is.</p>
+
+    <div class="gate">
+      <h2><span class="n">GATE 1</span>Data integrity</h2>
+      <p>Every downstream number inherits the quality of the data underneath it. A backtest on broken data is fiction with decimals.</p>
+      <ul>
+        <li>Prices come from the venue you'll actually trade, at the timeframe you'll actually trade</li>
+        <li>Volume is real — indicators like VWAP silently break on zero-volume feeds</li>
+        <li>No gaps, splices or repaired history hiding inside the series</li>
+        <li>Spreads, commissions and slippage are modelled, not ignored</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h2><span class="n">GATE 2</span>Sample size</h2>
+      <p>Ten winning trades prove nothing. Small samples make random luck look like edge.</p>
+      <ul>
+        <li>Enough trades that one streak can't dominate the statistics (dozens at minimum, more is better)</li>
+        <li>Trades spread across different market regimes — trending, ranging, volatile, quiet</li>
+        <li>No single month or single instrument carrying the whole result</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h2><span class="n">GATE 3</span>Positive expectancy after costs</h2>
+      <p>An edge that disappears when you subtract the spread was never an edge.</p>
+      <ul>
+        <li>Expectancy per trade is positive after spread, commission and slippage</li>
+        <li>Reward-to-risk and win rate make sense together — neither alone tells you anything</li>
+        <li>The result survives a modest worsening of assumed costs</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h2><span class="n">GATE 4</span>Drawdown discipline</h2>
+      <p>The question is not "how much does it make?" but "what will it feel like to hold through its worst run — and will the account survive it?"</p>
+      <ul>
+        <li>Maximum historical drawdown is known, and small enough to actually sit through</li>
+        <li>Longest losing streak is known — and you've asked whether you'd keep following the system at that point</li>
+        <li>Position sizing is derived from drawdown, not from optimism</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h2><span class="n">GATE 5</span>Parameter stability</h2>
+      <p>If performance collapses when a setting moves slightly, you didn't find an edge — you found a coincidence and tuned into it.</p>
+      <ul>
+        <li>Neighbouring parameter values perform similarly — a plateau, not a lone spike</li>
+        <li>The strategy's logic has a reason to work; it isn't just the best of 10,000 random combinations</li>
+        <li>Fewer parameters beat more parameters — every knob is an opportunity to overfit</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h2><span class="n">GATE 6</span>Monte Carlo robustness</h2>
+      <p>Your backtest is one sequence of history. Monte Carlo asks: what about the thousands of sequences that could have happened instead?</p>
+      <ul>
+        <li>Trade order reshuffled thousands of times — the strategy stays profitable across the distribution</li>
+        <li>Worst-case simulated drawdown is still survivable</li>
+        <li>Results don't hinge on a handful of outlier trades</li>
+      </ul>
+    </div>
+
+    <div class="gate fail">
+      <h2><span class="n">GATE 7</span>Independent reproduction</h2>
+      <p>The strongest test: does the result hold on data the strategy has never seen, reproduced by a process that has no reason to flatter it?</p>
+      <ul>
+        <li>Out-of-sample period held back and tested only once</li>
+        <li>Walk-forward: re-validated as new data arrives, not validated once and trusted forever</li>
+        <li>Backtest and live/demo execution agree — divergence between the two is a defect, not a detail</li>
+      </ul>
+    </div>
+
+    <div class="rule">
+      <strong>The rule that makes the checklist work:</strong> a strategy that fails any gate is not "almost ready" — it is not ready. A documented weakness is still a weakness. Fix it, or bin the strategy. There are always more strategies; there is only one account.
+    </div>
+
+    <p class="intro">This checklist is the thinking behind StratX's own validation pipeline — Monte Carlo testing, parameter-stability scoring and walk-forward re-validation run continuously inside <a href="https://stratx.tech" style="color: var(--green);">Terminal X</a>. No black boxes. No hidden assumptions.</p>
+
+    <footer>
+      <p class="tagline">BUILD. OPTIMISE. VALIDATE. DEPLOY.</p>
+      <p class="risk">StratX provides trading research, strategy development and analytics tools. It does not provide financial advice. Trading involves risk. Any backtest or validation figures are research output — past performance is not indicative of future results.</p>
+      <p class="fineprint">© StratX · <a href="https://stratx.tech">stratx.tech</a> · You may share this checklist in full, unmodified, with attribution.</p>
+    </footer>
+  </div>
+</body>
+</html>

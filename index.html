@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The 7-Gate Strategy Validation Checklist — Free Download | StratX</title>
+  <meta name="description" content="Free download: the 7-Gate Strategy Validation Checklist. The research standards a systematic trading strategy must pass before it earns the right to go live.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=IBM+Plex+Sans:wght@400;500&display=swap">
+  <style>
+    :root {
+      --bg: #000000; --bg-2: #141414;
+      --text: #FFFFFF; --text-2: #A5A5A5;
+      --green: #00C853; --green-2: #7CFF4F;
+      --violet: #8B2FF3; --violet-glow: #A855F7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; line-height: 1.6; }
+    h1, h2, h3, .btn { font-family: 'Space Grotesk', sans-serif; }
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+    header { padding: 28px 0; }
+    header img { height: 40px; width: auto; }
+    .hero { padding: 40px 0 72px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
+    .kicker { font-family: 'Space Grotesk', sans-serif; font-size: 13px; letter-spacing: 0.14em; color: var(--green); text-transform: uppercase; margin-bottom: 18px; }
+    h1 { font-size: clamp(30px, 4.6vw, 50px); line-height: 1.12; font-weight: 600; margin-bottom: 18px; }
+    h1 .accent { color: var(--green-2); }
+    .sub { color: var(--text-2); font-size: 18px; margin-bottom: 30px; max-width: 34em; }
+    .bullets { list-style: none; margin-bottom: 34px; }
+    .bullets li { padding: 7px 0; color: var(--text); font-size: 16px; }
+    .bullets li::before { content: "✓  "; color: var(--green); font-weight: 600; }
+    .bullets li span { color: var(--text-2); }
+    form { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    input[type="email"] { flex: 1 1 260px; background: var(--bg-2); border: 1px solid #2a2a2a; border-radius: 8px; padding: 15px 18px; color: var(--text); font-size: 16px; font-family: inherit; }
+    input[type="email"]:focus { outline: none; border-color: var(--green); }
+    .btn { display: inline-block; background: var(--green); color: #000; border: none; border-radius: 8px; padding: 15px 26px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; }
+    .btn:hover { background: var(--green-2); }
+    .micro { font-size: 13px; color: var(--text-2); }
+    .micro + .micro { margin-top: 4px; }
+    /* Lead magnet mock */
+    .magnet { background: linear-gradient(160deg, var(--bg-2) 0%, #0b0b0b 100%); border: 1px solid #262626; border-radius: 14px; padding: 34px 30px; position: relative; box-shadow: 0 0 60px rgba(139, 47, 243, 0.18), 0 0 40px rgba(0, 200, 83, 0.10); }
+    .magnet::before { content: ""; position: absolute; inset: -1px; border-radius: 14px; padding: 1px; background: linear-gradient(135deg, var(--violet) 0%, transparent 40%, transparent 60%, var(--green) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .magnet .tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.14em; color: var(--violet-glow); text-transform: uppercase; margin-bottom: 14px; }
+    .magnet h3 { font-size: 21px; margin-bottom: 18px; }
+    .gates { list-style: none; }
+    .gates li { display: flex; gap: 10px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #1e1e1e; font-size: 14px; color: var(--text-2); }
+    .gates li:last-child { border-bottom: none; }
+    .gates .n { font-family: 'Space Grotesk', sans-serif; color: var(--green); font-weight: 600; min-width: 52px; font-size: 12px; letter-spacing: 0.08em; }
+    .proof { padding: 26px 0 10px; border-top: 1px solid #1c1c1c; }
+    .proof p { color: var(--text-2); font-size: 15px; max-width: 46em; }
+    .proof p strong { color: var(--text); font-weight: 500; }
+    footer { border-top: 1px solid #1c1c1c; margin-top: 64px; padding: 34px 0 44px; }
+    .tagline { font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.12em; font-size: 13px; color: var(--text); margin-bottom: 14px; }
+    .risk { font-size: 12px; color: #7a7a7a; max-width: 62em; margin-bottom: 10px; }
+    .fineprint { font-size: 12px; color: #5c5c5c; }
+    .fineprint a { color: #7a7a7a; }
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 16px; }
+      .magnet { max-width: 460px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="assets/stratx-logo-header.png" alt="Strat X" width="120" height="40">
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="kicker">/ Free download — for systematic traders</p>
+        <h1>Most trading strategies fail <span class="accent">before they're ever traded.</span></h1>
+        <p class="sub">While most traders judge a strategy by its backtest curve, our research team runs it through seven validation gates first. Get the exact checklist — free.</p>
+        <ul class="bullets">
+          <li>The 7 gates <span>— from data integrity to Monte Carlo robustness and parameter stability</span></li>
+          <li>Why a beautiful backtest <span>usually means an overfit strategy — and the test that exposes it</span></li>
+          <li>The sample-size and drawdown floors <span>a strategy must clear before it deserves your trust</span></li>
+          <li>Printable one-page checklist <span>— run it on any strategy, yours or anyone else's</span></li>
+        </ul>
+        <form action="https://formsubmit.co/sales@stratx.tech" method="POST">
+          <input type="hidden" name="_subject" value="New StratX checklist lead">
+          <input type="hidden" name="_next" value="https://stratx-checklist.vercel.app/thank-you.html">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="email" name="email" placeholder="Your best email address" required aria-label="Email address">
+          <button class="btn" type="submit">Send Me the Free Checklist →</button>
+        </form>
+        <p class="micro">We respect your privacy. Unsubscribe anytime.</p>
+        <p class="micro">No spam. No "buy now" alerts. Education over hype.</p>
+      </div>
+
+      <aside class="magnet" aria-label="What's inside the checklist">
+        <p class="tag">/ Inside the checklist</p>
+        <h3>The 7-Gate Strategy Validation Checklist</h3>
+        <ul class="gates">
+          <li><span class="n">GATE 1</span> Data integrity — real prices, real volume, no gaps</li>
+          <li><span class="n">GATE 2</span> Sample size — enough trades to mean anything</li>
+          <li><span class="n">GATE 3</span> Positive expectancy — after spreads and costs</li>
+          <li><span class="n">GATE 4</span> Drawdown discipline — survivable losing runs</li>
+          <li><span class="n">GATE 5</span> Parameter stability — plateaus, not lucky peaks</li>
+          <li><span class="n">GATE 6</span> Monte Carlo robustness — reshuffle and stress it</li>
+          <li><span class="n">GATE 7</span> Independent reproduction — out-of-sample proof</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="proof">
+      <p><strong>Who's behind this?</strong> StratX is a research-first trading strategy ecosystem — build, optimise, validate and deploy systematic strategies. No black boxes. No hidden assumptions. This checklist is the thinking behind our own validation pipeline, written so you can apply it to anything.</p>
+    </section>
+
+    <footer>
+      <p class="tagline">BUILD. OPTIMISE. VALIDATE. DEPLOY.</p>
+      <p class="risk">StratX provides trading research, strategy development and analytics tools. It does not provide financial advice. Trading involves risk.</p>
+      <p class="fineprint">© StratX · <a href="https://stratx.tech">stratx.tech</a></p>
+    </footer>
+  </div>
+</body>
+</html>
