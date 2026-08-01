@@ -116,6 +116,7 @@
 </head>
 <body>
   <div class="wrap">
+    <div id="price-banner" style="display:none; background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%); color: #000; text-align: center; padding: 10px 16px; font-weight: 600; font-size: 14px; letter-spacing: 0.02em;"></div>
     <header>
       <img src="assets/stratx-logo-header.png" alt="Strat X" width="120" height="40">
       <nav class="nav-links">
@@ -429,6 +430,29 @@
     });
     // Initialize FAQ answers as hidden
     document.querySelectorAll('.faq-a').forEach(a => a.style.display = 'none');
+  </script>
+  <script>
+    // StratX price escalation: +£100 every 30 days from 2026-08-01 (prices below
+    // must stay in sync with the Stripe Payment Links — update them on each rise date)
+    (function () {
+      var epoch = new Date('2026-08-01T00:00:00Z');
+      var step = 100, interval = 30;
+      var days = Math.floor((Date.now() - epoch.getTime()) / 86400000);
+      var tier = Math.max(0, Math.floor(days / interval));
+      var bases = { 299: 299, 199: 199, 399: 399 };
+      var next = new Date(epoch.getTime() + (tier + 1) * interval * 86400000);
+      var nextStr = next.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      if (tier > 0) {
+        document.querySelectorAll('.product-price, .pricing-amount').forEach(function (el) {
+          var text = el.textContent.replace(/[£,]/g, '').trim();
+          var base = parseInt(text, 10);
+          if (bases[base] !== undefined) el.textContent = '£' + (base + step * tier);
+        });
+      }
+      var banner = document.getElementById('price-banner');
+      banner.style.display = 'block';
+      banner.textContent = 'Launch pricing ends soon — every StratX EA rises by £' + step + ' on ' + nextStr + '. Lock in today’s price.';
+    })();
   </script>
 </body>
 </html>
