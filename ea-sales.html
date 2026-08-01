@@ -3,419 +3,313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StratX Gold X1 & US30 X1 — Professional MT5 Expert Advisors</title>
-  <meta name="description" content="6-module portfolio EA for Gold + Failed Breakout reversal EA for US30. No martingale. No grid. Every trade has a stop loss. Backtested with 40+ optimization batches.">
+  <title>StratX — Build. Validate. Deploy.</title>
+  <meta name="description" content="Build, validate and deploy rule-based trading strategies with Terminal X and proven EAs. No coding. No martingale. Just verified systems.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=IBM+Plex+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap">
   <style>
     :root {
       --bg: #000000; --bg-2: #141414;
       --text: #FFFFFF; --text-2: #A5A5A5;
       --green: #00C853; --green-2: #7CFF4F;
-      --violet: #8B2FF3; --violet-glow: #A855F7;
-      --gold: #FFD700;
+      --violet: #8B2FF3; --gold: #FFD700;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; line-height: 1.6; }
     h1, h2, h3, .btn { font-family: 'Space Grotesk', sans-serif; }
-    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
     header { padding: 28px 0; display: flex; justify-content: space-between; align-items: center; }
     header img { height: 40px; width: auto; }
-    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links { display: flex; gap: 20px; }
     .nav-links a { color: var(--text-2); text-decoration: none; font-size: 14px; }
     .nav-links a:hover { color: var(--green); }
-    .hero { padding: 40px 0 72px; text-align: center; }
-    .kicker { font-family: 'Space Grotesk', sans-serif; font-size: 13px; letter-spacing: 0.14em; color: var(--green); text-transform: uppercase; margin-bottom: 18px; }
-    h1 { font-size: clamp(32px, 5vw, 56px); line-height: 1.12; font-weight: 600; margin-bottom: 24px; }
+    /* HERO */
+    .hero { padding: 60px 0 48px; text-align: center; }
+    .kicker { font-size: 13px; letter-spacing: 0.14em; color: var(--green); text-transform: uppercase; margin-bottom: 18px; }
+    h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.12; font-weight: 700; margin-bottom: 20px; }
     h1 .accent { color: var(--green-2); }
-    .sub { color: var(--text-2); font-size: 20px; margin-bottom: 40px; max-width: 48em; margin-left: auto; margin-right: auto; }
-    .cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
-    .btn { display: inline-block; border-radius: 8px; padding: 16px 32px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .sub { color: var(--text-2); font-size: 20px; margin-bottom: 16px; max-width: 48em; margin-left: auto; margin-right: auto; }
+    .urgency-line { color: var(--gold); font-size: 16px; font-weight: 600; margin-bottom: 32px; }
+    .cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .btn { display: inline-block; border-radius: 8px; padding: 16px 32px; font-size: 16px; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s; }
     .btn-primary { background: var(--green); color: #000; border: none; }
-    .btn-primary:hover { background: var(--green-2); transform: translateY(-2px); }
+    .btn-primary:hover { background: var(--green-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 200, 83, 0.3); }
     .btn-secondary { background: transparent; color: var(--text); border: 2px solid var(--violet); }
     .btn-secondary:hover { background: var(--violet); }
     .btn-vantage { background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%); color: #000; border: none; }
     .btn-vantage:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3); }
-    .trust-badges { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; color: var(--text-2); font-size: 14px; }
-    .trust-badges span { display: flex; align-items: center; gap: 8px; }
-    .trust-badges .check { color: var(--green); font-weight: 600; }
-    /* Products */
-    .products { padding: 72px 0; }
-    .section-title { text-align: center; font-size: 36px; margin-bottom: 16px; }
-    .section-sub { text-align: center; color: var(--text-2); font-size: 18px; margin-bottom: 56px; }
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 32px; }
-    .product-card { background: var(--bg-2); border: 1px solid #262626; border-radius: 14px; padding: 36px; position: relative; }
-    .product-card.featured { border-color: var(--violet); box-shadow: 0 0 40px rgba(139, 47, 243, 0.2); }
-    .product-badge { position: absolute; top: -12px; right: 24px; background: var(--violet); color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; }
-    .product-title { font-size: 28px; margin-bottom: 12px; }
-    .product-subtitle { color: var(--text-2); font-size: 15px; margin-bottom: 24px; }
-    .product-features { list-style: none; margin-bottom: 32px; }
-    .product-features li { padding: 8px 0; color: var(--text-2); font-size: 15px; display: flex; gap: 10px; }
-    .product-features li::before { content: "✓"; color: var(--green); font-weight: 600; }
-    .product-price { font-size: 32px; font-weight: 600; margin-bottom: 8px; }
-    .product-price .currency { font-size: 20px; color: var(--text-2); }
-    .product-price .period { font-size: 16px; color: var(--text-2); font-weight: 400; }
-    .price-note { color: var(--text-2); font-size: 13px; margin-bottom: 24px; }
-    .product-actions { display: flex; flex-direction: column; gap: 12px; }
-    /* Pricing options */
-    .pricing { padding: 72px 0; background: var(--bg-2); }
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 48px; }
-    .pricing-card { background: var(--bg); border: 1px solid #262626; border-radius: 12px; padding: 32px; text-align: center; }
-    .pricing-card.highlight { border-color: var(--green); }
-    .pricing-label { font-size: 14px; color: var(--text-2); margin-bottom: 12px; }
-    .pricing-amount { font-size: 42px; font-weight: 600; margin-bottom: 8px; }
-    .pricing-desc { color: var(--text-2); font-size: 14px; margin-bottom: 24px; }
-    /* Vantage offer */
-    .vantage-offer { padding: 72px 0; background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 165, 0, 0.05) 100%); border-top: 1px solid rgba(255, 215, 0, 0.2); border-bottom: 1px solid rgba(255, 215, 0, 0.2); }
-    .vantage-box { background: var(--bg-2); border: 2px solid var(--gold); border-radius: 16px; padding: 48px; text-align: center; max-width: 720px; margin: 0 auto; }
-    .vantage-badge { display: inline-block; background: var(--gold); color: #000; padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 20px; }
-    .vantage-title { font-size: 32px; margin-bottom: 16px; }
-    .vantage-sub { color: var(--text-2); font-size: 18px; margin-bottom: 32px; }
-    .vantage-steps { text-align: left; max-width: 480px; margin: 0 auto 32px; }
-    .vantage-steps li { padding: 12px 0; color: var(--text); font-size: 16px; display: flex; gap: 12px; }
-    .vantage-steps .step-num { background: var(--gold); color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; flex-shrink: 0; }
-    .vantage-savings { background: rgba(0, 200, 83, 0.1); border: 1px solid var(--green); border-radius: 8px; padding: 16px; margin-bottom: 32px; }
-    .vantage-savings strong { color: var(--green); }
-    .affiliate-disclosure { font-size: 12px; color: var(--text-2); margin-top: 24px; }
-    /* Features */
-    .features { padding: 72px 0; }
-    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 48px; }
-    .feature-card { text-align: center; padding: 24px; }
-    .feature-icon { font-size: 48px; margin-bottom: 16px; }
-    .feature-title { font-size: 20px; margin-bottom: 12px; }
-    .feature-desc { color: var(--text-2); font-size: 15px; }
+    /* PROBLEM */
+    .problem { padding: 48px 0; text-align: center; }
+    .section-title { font-size: 32px; margin-bottom: 16px; }
+    .section-sub { color: var(--text-2); font-size: 18px; margin-bottom: 40px; }
+    .pain-list { list-style: none; text-align: left; max-width: 560px; margin: 0 auto 32px; }
+    .pain-list li { padding: 12px 0; color: var(--text-2); font-size: 16px; display: flex; gap: 12px; }
+    .pain-list .x { color: #ff4444; font-weight: 700; }
+    .pivot { color: var(--green-2); font-size: 20px; font-weight: 600; margin-top: 24px; }
+    /* SOLUTION */
+    .solution { padding: 48px 0; }
+    .sol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 32px; }
+    .sol-card { background: var(--bg-2); border: 1px solid #262626; border-radius: 14px; padding: 32px; }
+    .sol-card.featured { border-color: var(--green); }
+    .sol-badge { display: inline-block; background: var(--green); color: #000; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .sol-title { font-size: 24px; margin-bottom: 8px; }
+    .sol-price { font-size: 28px; font-weight: 700; color: var(--green-2); margin-bottom: 16px; }
+    .sol-desc { color: var(--text-2); font-size: 15px; margin-bottom: 20px; }
+    .sol-features { list-style: none; margin-bottom: 24px; }
+    .sol-features li { padding: 6px 0; color: var(--text-2); font-size: 14px; display: flex; gap: 8px; }
+    .sol-features li::before { content: "✓"; color: var(--green); font-weight: 600; }
+    /* PROOF TABLE */
+    .proof { padding: 48px 0; background: var(--bg-2); text-align: center; }
+    .proof-table { width: 100%; max-width: 680px; margin: 32px auto 0; border-collapse: collapse; }
+    .proof-table th { padding: 12px; border-bottom: 1px solid #333; color: var(--text-2); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .proof-table td { padding: 14px 12px; border-bottom: 1px solid #262626; font-size: 16px; }
+    .proof-table .green { color: var(--green); font-weight: 700; }
+    .proof-note { color: var(--text-2); font-size: 13px; margin-top: 16px; }
+    /* OFFER */
+    .offer { padding: 48px 0; text-align: center; }
+    .offer-box { background: linear-gradient(135deg, rgba(0, 200, 83, 0.08), rgba(139, 47, 243, 0.08)); border: 2px solid var(--green); border-radius: 16px; padding: 40px; max-width: 600px; margin: 0 auto; }
+    .offer-label { font-size: 12px; letter-spacing: 0.12em; color: var(--gold); font-weight: 700; margin-bottom: 12px; }
+    .offer-title { font-size: 28px; margin-bottom: 16px; }
+    .offer-includes { list-style: none; text-align: left; max-width: 400px; margin: 0 auto 24px; }
+    .offer-includes li { padding: 8px 0; color: var(--text); font-size: 15px; display: flex; gap: 10px; }
+    .offer-includes li::before { content: "✓"; color: var(--green); font-weight: 600; }
+    .offer-value { color: var(--text-2); font-size: 14px; margin-bottom: 8px; text-decoration: line-through; }
+    .offer-price { font-size: 42px; font-weight: 700; color: var(--green-2); margin-bottom: 24px; }
+    .offer-note { color: var(--text-2); font-size: 13px; margin-bottom: 24px; }
+    /* GUARANTEE */
+    .guarantee { padding: 48px 0; text-align: center; }
+    .guarantee-box { border: 1px solid var(--green); border-radius: 12px; padding: 32px; max-width: 600px; margin: 0 auto; }
+    .guarantee-icon { font-size: 48px; margin-bottom: 12px; }
+    .guarantee-title { font-size: 22px; margin-bottom: 12px; }
+    .guarantee-text { color: var(--text-2); font-size: 15px; }
     /* FAQ */
-    .faq { padding: 72px 0; background: var(--bg-2); }
-    .faq-list { max-width: 720px; margin: 48px auto 0; }
-    .faq-item { border-bottom: 1px solid #262626; padding: 24px 0; }
-    .faq-q { font-size: 18px; font-weight: 600; margin-bottom: 12px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-    .faq-a { color: var(--text-2); font-size: 16px; }
-    /* Footer */
-    footer { border-top: 1px solid #1c1c1c; padding: 48px 0; }
-    .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 32px; }
-    .footer-brand img { height: 36px; margin-bottom: 16px; }
-    .footer-brand p { color: var(--text-2); font-size: 14px; max-width: 320px; }
-    .footer-links h4 { font-size: 14px; margin-bottom: 16px; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { padding: 6px 0; }
-    .footer-links a { color: var(--text-2); text-decoration: none; font-size: 14px; }
-    .footer-links a:hover { color: var(--green); }
-    .footer-bottom { border-top: 1px solid #1c1c1c; padding-top: 24px; }
-    .tagline { font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.12em; font-size: 13px; color: var(--text); margin-bottom: 14px; }
-    .risk { font-size: 12px; color: #7a7a7a; max-width: 62em; margin-bottom: 10px; }
-    .fineprint { font-size: 12px; color: #5c5c5c; }
-    .fineprint a { color: #7a7a7a; }
+    .faq { padding: 48px 0; background: var(--bg-2); }
+    .faq-list { max-width: 640px; margin: 32px auto 0; }
+    .faq-item { border-bottom: 1px solid #262626; padding: 20px 0; }
+    .faq-q { font-size: 17px; font-weight: 600; margin-bottom: 8px; cursor: pointer; display: flex; justify-content: space-between; }
+    .faq-a { color: var(--text-2); font-size: 15px; display: none; }
+    /* URGENCY */
+    .urgency-section { padding: 48px 0; text-align: center; }
+    .urgency-box { background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 165, 0, 0.08)); border: 1px solid var(--gold); border-radius: 12px; padding: 32px; max-width: 560px; margin: 0 auto; }
+    .urgency-title { font-size: 24px; margin-bottom: 12px; color: var(--gold); }
+    .urgency-text { color: var(--text-2); font-size: 15px; margin-bottom: 24px; }
+    /* COMMUNITY */
+    .community { padding: 48px 0; text-align: center; }
+    .comm-box { border: 1px solid var(--violet); border-radius: 12px; padding: 32px; max-width: 560px; margin: 0 auto; }
+    .comm-title { font-size: 22px; margin-bottom: 12px; }
+    .comm-text { color: var(--text-2); font-size: 15px; margin-bottom: 20px; }
+    /* FOOTER */
+    footer { border-top: 1px solid #1c1c1c; padding: 32px 0; text-align: center; }
+    .risk { font-size: 11px; color: #5c5c5c; max-width: 60em; margin: 0 auto 8px; }
+    .fineprint { font-size: 11px; color: #4a4a4a; }
     @media (max-width: 768px) {
-      .product-grid, .pricing-grid, .feature-grid { grid-template-columns: 1fr; }
-      .footer-content { grid-template-columns: 1fr; gap: 32px; }
-      .vantage-box { padding: 32px 24px; }
+      .sol-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div id="price-banner" style="display:none; background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%); color: #000; text-align: center; padding: 10px 16px; font-weight: 600; font-size: 14px; letter-spacing: 0.02em;"></div>
     <header>
       <img src="assets/stratx-logo-header.png" alt="Strat X" width="120" height="40">
       <nav class="nav-links">
         <a href="#products">Products</a>
         <a href="#pricing">Pricing</a>
-        <a href="#vantage">50% Off</a>
-        <a href="#community">Community</a>
+        <a href="#offer">Bundle</a>
         <a href="#faq">FAQ</a>
       </nav>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
-      <p class="kicker">/ Professional MT5 Expert Advisors</p>
-      <h1>Stop gambling. Start trading <span class="accent">with discipline.</span></h1>
-      <p class="sub">Two institutional-grade Expert Advisors for MetaTrader 5. No martingale. No grid. No averaging down. Every trade has a stop loss. Backtested across 40+ optimization batches with in-sample, out-of-sample, and walk-forward validation.</p>
+      <p class="kicker">Quantitative Strategy Research & Deployment</p>
+      <h1>Stop Guessing.<br>Start <span class="accent">Validating.</span></h1>
+      <p class="sub">Build, test, and deploy rule-based trading systems in minutes — not months. No coding. No martingale. No grid. Just verified strategies backed by real tick data.</p>
+      <p class="urgency-line">⚠️ Prices rise £100 on Aug 31. Lock in now.</p>
       <div class="cta-group">
-        <a href="#pricing" class="btn btn-primary">View Pricing →</a>
-        <a href="#vantage" class="btn btn-vantage">Get 50% Off with Vantage →</a>
-        <a href="#community" class="btn btn-secondary">Join the Free Community →</a>
-      </div>
-      <div class="trust-badges">
-        <span><span class="check">✓</span> No martingale, no grid</span>
-        <span><span class="check">✓</span> Every trade has a stop loss</span>
-        <span><span class="check">✓</span> 40+ optimization batches</span>
-        <span><span class="check">✓</span> Professional dashboard</span>
-        <span><span class="check">✓</span> Order-flow confluence</span>
+        <a href="#offer" class="btn btn-primary">GET TERMINAL X + EAS →</a>
+        <a href="#pricing" class="btn btn-secondary">View Pricing →</a>
+        <a href="#community" class="btn btn-secondary">Free Community →</a>
       </div>
     </section>
 
-    <section class="products" id="products">
-      <h2 class="section-title">Two EAs. Two markets. One standard.</h2>
-      <p class="section-sub">Built for traders who demand transparency, risk controls, and institutional-grade execution.</p>
-      <div class="product-grid">
-        <div class="product-card featured">
-          <span class="product-badge">FLAGSHIP</span>
-          <h3 class="product-title">StratX Gold X1</h3>
-          <p class="product-subtitle">6-Module Portfolio EA for XAUUSD</p>
-          <ul class="product-features">
-            <li>Failed Breakout + IFVG</li>
-            <li>Break & Retest</li>
-            <li>FVG Touch</li>
-            <li>Liquidity Sweep</li>
-            <li>Goldlock ORB</li>
-            <li>FABLE-2 Ensemble (8-pocket)</li>
-            <li>3 profiles × 4 risk tiers = 12 configurations</li>
-            <li>GC order-flow confluence</li>
-            <li>Professional on-chart dashboard</li>
-            <li>FBL exit management (partial + BE + ATR trail)</li>
+    <!-- PROBLEM -->
+    <section class="problem">
+      <h2 class="section-title">Why Most Traders Stay Stuck</h2>
+      <p class="section-sub">You've spent years learning the markets. You know the patterns. But systematising that knowledge? That's where it falls apart.</p>
+      <ul class="pain-list">
+        <li><span class="x">✕</span> Custom EA development costs thousands and takes months</li>
+        <li><span class="x">✕</span> Hiring developers leads to buggy code and broken logic</li>
+        <li><span class="x">✕</span> Free indicators are lagging and useless</li>
+        <li><span class="x">✕</span> Manual trading caps your income at how many hours you have left</li>
+      </ul>
+      <p class="pivot">You don't need another indicator. You need a validated system.</p>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="solution" id="products">
+      <h2 class="section-title">The StratX Ecosystem</h2>
+      <p class="section-sub">Two products. One standard. Take you from idea to live automatically.</p>
+      <div class="sol-grid">
+        <div class="sol-card featured">
+          <span class="sol-badge">TERMINAL X</span>
+          <h3 class="sol-title">The Strategy Builder</h3>
+          <p class="sol-price">£900 one-time</p>
+          <p class="sol-desc">Visual strategy builder. Define entry, exit, and risk parameters with drag-and-drop logic. Zero code required.</p>
+          <ul class="sol-features">
+            <li>7-Gate Validation (WR, PF, DD, TPY, walk-forward, MC, confluence)</li>
+            <li>No coding — if you can draw a box, you can build a strategy</li>
+            <li>In-sample, out-of-sample, and walk-forward splits</li>
+            <li>Monte Carlo robustness testing built in</li>
+            <li>Lifetime updates included</li>
           </ul>
-          <div class="product-price"><span class="currency">£</span>299 <span class="period">one-time</span></div>
-          <p class="price-note">Or 50% off with Vantage account signup</p>
-          <div class="product-actions">
-            <a href="#pricing" class="btn btn-primary">Buy Now →</a>
-            <a href="#vantage" class="btn btn-vantage">Get 50% Off →</a>
-          </div>
+          <a href="https://app.stratx.tech" target="_blank" class="btn btn-primary">Try Terminal X →</a>
         </div>
-        <div class="product-card">
-          <h3 class="product-title">StratX US30 X1</h3>
-          <p class="product-subtitle">Failed Breakout Reversal EA for Dow Jones</p>
-          <ul class="product-features">
-            <li>7 level types (OR, Asia, London, PDH/PDL, Equal H/L)</li>
-            <li>5-stage state machine entry</li>
-            <li>YM futures confluence scoring (5 features)</li>
-            <li>VWAP gate + weighted scoring</li>
-            <li>FBL exit management (partial + BE + ATR trail)</li>
-            <li>4 risk tiers (0.5%–5.0%)</li>
-            <li>News avoidance (Calendar API)</li>
-            <li>Professional dashboard</li>
-            <li>London + NY Cash Open sessions</li>
-            <li>Runner hard-cap at 3R</li>
+        <div class="sol-card">
+          <span class="sol-badge" style="background: var(--violet);">STRATX EAS</span>
+          <h3 class="sol-title">The Proven Executors</h3>
+          <p class="sol-price">Gold £299 · US30 £199 · Bundle £399</p>
+          <p class="sol-desc">Don't want to build? Buy what's already validated. Backtested on live tick data. Reproduced trade-for-trade.</p>
+          <ul class="sol-features">
+            <li>Gold X1 — 6-module portfolio for XAUUSD (76.3% WR)</li>
+            <li>US30 X1 — Failed Breakout Reversal for Dow Jones (70.8% WR)</li>
+            <li>Pre-compiled .ex5 files — just drag onto MT5 chart</li>
+            <li>.set profiles for every risk level included</li>
+            <li>Full user manuals + order-flow CSV data</li>
           </ul>
-          <div class="product-price"><span class="currency">£</span>199 <span class="period">one-time</span></div>
-          <p class="price-note">Or 50% off with Vantage account signup</p>
-          <div class="product-actions">
-            <a href="#pricing" class="btn btn-primary">Buy Now →</a>
-            <a href="#vantage" class="btn btn-vantage">Get 50% Off →</a>
-          </div>
+          <a href="#pricing" class="btn btn-primary">Buy EAs →</a>
         </div>
       </div>
     </section>
 
-    <section class="vantage-offer" id="vantage">
-      <div class="vantage-box">
-        <span class="vantage-badge">LIMITED-TIME OFFER</span>
-        <h2 class="vantage-title">Get 50% Off Both EAs</h2>
-        <p class="vantage-sub">Open a Vantage Markets account via our link and receive 50% off any StratX EA — plus Vantage's welcome bonus.</p>
-        <ol class="vantage-steps">
-          <li><span class="step-num">1</span> Click the button below to open a Vantage account</li>
-          <li><span class="step-num">2</span> Use referral code <strong>CPA48V3Pw</strong> during signup</li>
-          <li><span class="step-num">3</span> Fund your account (minimum deposit applies)</li>
-          <li><span class="step-num">4</span> Email your Vantage account number to sales@stratx.tech</li>
-          <li><span class="step-num">5</span> Receive your 50% discount code within 24 hours</li>
-        </ol>
-        <div class="vantage-savings">
-          <strong>You save:</strong> £149.50 on Gold X1 · £99.50 on US30 X1 · £249 on both
-        </div>
-        <a href="https://www.vantagemarkets.com/open-live-account?cpaAffid=MjAyMjgwMDA" target="_blank" rel="noopener" class="btn btn-vantage">Open Vantage Account →</a>
-        <p class="affiliate-disclosure">Affiliate disclosure: We earn commission from Vantage Markets when you open an account via our link. This does not affect your trading costs or the bonus you receive. The 50% EA discount is our way of sharing that commission with you. Vantage Markets is regulated by multiple authorities — verify the regulated entity for your country before signing up.</p>
-      </div>
+    <!-- PROOF -->
+    <section class="proof">
+      <h2 class="section-title">Don't Take Our Word For It. Look At The Data.</h2>
+      <p class="section-sub">These are the metrics from our live validation runs. Validated 2026-06-16 via Strategy Tester.</p>
+      <table class="proof-table">
+        <thead>
+          <tr><th></th><th>Gold X1 (XAUUSD)</th><th>US30 X1 (Dow Jones)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Win Rate</strong></td><td class="green">76.3%</td><td class="green">70.8%</td></tr>
+          <tr><td><strong>Profit Factor</strong></td><td class="green">1.82</td><td class="green">2.43</td></tr>
+          <tr><td><strong>Max Drawdown</strong></td><td>3.81%</td><td>2.97%</td></tr>
+          <tr><td><strong>Trades / Year</strong></td><td>57.6</td><td>55.5</td></tr>
+        </tbody>
+      </table>
+      <p class="proof-note">Real tick data. In-sample, out-of-sample, and walk-forward splits. Full methodology available free.</p>
     </section>
 
-    <section class="pricing" id="pricing">
-      <h2 class="section-title">Simple, transparent pricing</h2>
-      <p class="section-sub">One-time purchase. Lifetime updates. No subscriptions.</p>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <p class="pricing-label">StratX Gold X1</p>
-          <p class="pricing-amount">£299</p>
-          <p class="pricing-desc">One-time purchase</p>
-          <a href="https://buy.stripe.com/aFa0ifMG0BwajUf0ecEw02" class="btn btn-primary">Buy Gold X1 →</a>
+    <!-- PRICING -->
+    <section class="offer" id="pricing">
+      <h2 class="section-title">Simple Pricing. Lifetime Access.</h2>
+      <p class="section-sub">One-time purchase. No subscriptions. No hidden fees.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 700px; margin: 32px auto 0;">
+        <div style="background: var(--bg-2); border: 1px solid #262626; border-radius: 12px; padding: 24px; text-align: center;">
+          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 8px;">TERMINAL X</p>
+          <p style="font-size: 32px; font-weight: 700;">£900</p>
+          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 16px;">one-time</p>
+          <a href="https://app.stratx.tech" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Access Terminal X →</a>
         </div>
-        <div class="pricing-card">
-          <p class="pricing-label">StratX US30 X1</p>
-          <p class="pricing-amount">£199</p>
-          <p class="pricing-desc">One-time purchase</p>
-          <a href="https://buy.stripe.com/4gM5kC2ZUac6eAaf0ecEw03" class="btn btn-primary">Buy US30 X1 →</a>
+        <div style="background: var(--bg-2); border: 1px solid #262626; border-radius: 12px; padding: 24px; text-align: center;">
+          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 8px;">GOLD X1</p>
+          <p style="font-size: 32px; font-weight: 700;">£299</p>
+          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 16px;">one-time</p>
+          <a href="https://buy.stripe.com/aFa0ifMG0BwajUf0ecEw02" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Buy Gold X1 →</a>
         </div>
-        <div class="pricing-card highlight">
-          <p class="pricing-label">Bundle (Both EAs)</p>
-          <p class="pricing-amount">£399</p>
-          <p class="pricing-desc">Save £99 vs individual</p>
-          <a href="https://buy.stripe.com/bJeaEWbwqbga63Ef0ecEw04" class="btn btn-primary">Buy Bundle →</a>
-        </div>
-      </div>
-      <p style="text-align: center; margin-top: 32px; color: var(--text-2); font-size: 15px;">
-        <strong style="color: var(--gold);">Or get 50% off</strong> when you open a Vantage account → <a href="#vantage" style="color: var(--green);">See how →</a>
-      </p>
-    </section>
-
-    <section class="features">
-      <h2 class="section-title">Why StratX?</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3 class="feature-title">Risk-First Design</h3>
-          <p class="feature-desc">Every trade has a stop loss. No martingale. No grid. No averaging down. Your capital is protected by design, not by hope.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3 class="feature-title">40+ Optimization Batches</h3>
-          <p class="feature-desc">Tested across in-sample, out-of-sample, and walk-forward splits. Equity curves, drawdown charts, and MAE/MFE analysis included.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3 class="feature-title">Order-Flow Confluence</h3>
-          <p class="feature-desc">Optional GC/YM futures data integration for delta, cumulative delta, VWAP alignment, and imbalance filtering.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚙️</div>
-          <h3 class="feature-title">12 Configurations</h3>
-          <p class="feature-desc">3 profiles (Conservative, Balanced, Active) × 4 risk tiers (0.5%–5.0%) = 12 ways to trade. Find your style.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📈</div>
-          <h3 class="feature-title">Professional Dashboard</h3>
-          <p class="feature-desc">On-chart dashboard shows module status, portfolio P&L, open positions, news blackout, and equity drawdown in real-time.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔄</div>
-          <h3 class="feature-title">Lifetime Updates</h3>
-          <p class="feature-desc">One-time purchase includes all future updates. We've shipped 14 versions for Gold X1 and 11 for US30 X1 — and we're not stopping.</p>
+        <div style="background: var(--bg-2); border: 1px solid #262626; border-radius: 12px; padding: 24px; text-align: center;">
+          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 8px;">US30 X1</p>
+          <p style="font-size: 32px; font-weight: 700;">£199</p>
+          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 16px;">one-time</p>
+          <a href="https://buy.stripe.com/4gM5kC2ZUac6eAaf0ecEw03" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Buy US30 X1 →</a>
         </div>
       </div>
     </section>
 
-    <section class="vantage-offer" id="backtests" style="background: rgba(0, 200, 83, 0.04);">
-      <div class="vantage-box" style="border-color: var(--green);">
-        <span class="vantage-badge" style="background: var(--green);">VERIFIED BACKTESTS</span>
-        <h2 class="vantage-title">The numbers behind the EAs</h2>
-        <p class="vantage-sub">Both strategies pass the StratX 7-Gate validation on real Strategy Tester runs — win rate, profit factor, drawdown and trade frequency all confirmed on live-market tick data. Reproduce the run yourself in 15 minutes.</p>
-        <div style="max-width: 680px; margin: 0 auto 32px; text-align: center;">
-          <table style="width:100%; border-collapse: collapse; font-size: 15px;">
-            <thead>
-              <tr style="color: var(--text-2); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">
-                <th style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.15); text-align:left;">Strategy</th>
-                <th style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.15);">Win rate</th>
-                <th style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.15);">Profit factor</th>
-                <th style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.15);">Max drawdown</th>
-                <th style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.15);">Trades / yr</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="padding: 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.08); text-align:left; font-weight:600;">Gold X1 — XAUUSD M15</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--green); font-weight:700;">76.3%</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.08); font-weight:700;">1.82</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.08); font-weight:700;">3.81%</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.08);">57.6</td>
-              </tr>
-              <tr>
-                <td style="padding: 14px 12px; text-align:left; font-weight:600;">US30 X1 — US30 M15</td>
-                <td style="padding: 14px 12px; color: var(--green); font-weight:700;">70.8%</td>
-                <td style="padding: 14px 12px; font-weight:700;">2.43</td>
-                <td style="padding: 14px 12px; font-weight:700;">2.97%</td>
-                <td style="padding: 14px 12px;">55.5</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="price-note" style="margin-top: 16px;">Validated 2026-06-16 · M15 session-window config · real tick data · Strategy Tester reproduction verified by StratX QA</p>
-        </div>
-        <div class="product-actions" style="max-width: 340px; margin: 0 auto;">
-          <a href="https://discord.gg/asG9yC4Ra" target="_blank" rel="noopener" class="btn btn-primary">Ask us to walk you through the run →</a>
+    <!-- GRAND SLAM OFFER -->
+    <section class="offer" id="offer">
+      <div class="offer-box">
+        <p class="offer-label">🔥 LIMITED-TIME BUNDLE 🔥</p>
+        <h2 class="offer-title">The All-In Package</h2>
+        <p class="sol-desc">Everything you need. One price. Stop buying tools separately.</p>
+        <ul class="offer-includes">
+          <li>Terminal X (Full Strategy Builder License)</li>
+          <li>Gold X1 EA (Compiled .ex5 + Set Files + Manual)</li>
+          <li>US30 X1 EA (Compiled .ex5 + Set Files + Manual)</li>
+          <li>Community Access (Discord + Private Group)</li>
+          <li>Free Validation Checklist (PDF Methodology)</li>
+        </ul>
+        <p class="offer-value">Total Value: £1,598+</p>
+        <p class="offer-price">£1,399</p>
+        <p class="offer-note">Save £200 vs buying individually. Price rises £100 per product on Aug 31.</p>
+        <a href="https://buy.stripe.com/bJeaEWbwqbga63Ef0ecEw04" class="btn btn-primary" style="font-size: 18px; padding: 18px 40px;">CLAIM YOUR DISCOUNTED ACCESS →</a>
+      </div>
+    </section>
+
+    <!-- GUARANTEE -->
+    <section class="guarantee">
+      <div class="guarantee-box">
+        <div class="guarantee-icon">🛡️</div>
+        <h2 class="guarantee-title">The 90-Day Guarantee</h2>
+        <p class="guarantee-text">If you implement Terminal X and our EAs within 90 days and don't see a measurable improvement in your strategy validation process — or if the EAs don't perform as backtested — you get a full refund. No questions asked. We deliver or we don't charge.</p>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="community" id="community">
+      <div class="comm-box">
+        <h2 class="comm-title">Free Community</h2>
+        <p class="comm-text">Join while we're building. Strategy discussions, early access to validated plays, direct line to the team. No hype. No signals. Just traders who test before they risk.</p>
+        <div class="cta-group">
+          <a href="https://discord.gg/asG9yC4Ra" target="_blank" class="btn btn-primary">Join the Discord →</a>
+          <a href="https://stratx-checklist.onrender.com" target="_blank" class="btn btn-secondary">Free Validation Checklist →</a>
         </div>
       </div>
     </section>
 
-    <section class="vantage-offer" id="community">
-      <div class="vantage-box" style="border-color: var(--green);">
-        <span class="vantage-badge" style="background: var(--green);">FREE COMMUNITY</span>
-        <h2 class="vantage-title">Talk to real traders. Not alerts.</h2>
-        <p class="vantage-sub">Join the StratX Community — a small, research-first group for traders who test their ideas before risking capital. Market structure, FVG, liquidity, ORB, Monte Carlo. No buy/sell alerts, no hype.</p>
-        <ol class="vantage-steps">
-          <li><span class="step-num">1</span> Discord: strategy discussions, early access to validated strategies, direct line to the team</li>
-          <li><span class="step-num">2</span> Facebook: private group — free to join, a couple of questions on request</li>
-          <li><span class="step-num">3</span> Free 7-Gate Validation Checklist: the methodology behind every EA we ship</li>
-        </ol>
-        <div class="product-actions" style="max-width: 340px; margin: 0 auto 8px;">
-          <a href="https://discord.gg/asG9yC4Ra" target="_blank" rel="noopener" class="btn btn-primary">Join the Discord →</a>
-          <a href="https://www.facebook.com/groups/stratxcommunity" target="_blank" rel="noopener" class="btn btn-secondary">Join the Facebook Group →</a>
-          <a href="https://stratx-checklist.onrender.com" target="_blank" rel="noopener" class="btn btn-vantage">Free Validation Checklist →</a>
-        </div>
-      </div>
-    </section>
-
+    <!-- FAQ -->
     <section class="faq" id="faq">
-      <h2 class="section-title">Frequently asked questions</h2>
+      <h2 class="section-title">Frequently Asked Questions</h2>
       <div class="faq-list">
         <div class="faq-item">
-          <p class="faq-q">Do I need a Vantage account to buy the EA? <span>+</span></p>
-          <p class="faq-a">No. You can buy the EA at full price without opening a Vantage account. The 50% discount is optional — it's our way of sharing the affiliate commission we earn from Vantage when you sign up via our link.</p>
+          <p class="faq-q">Do I need coding skills? <span>+</span></p>
+          <p class="faq-a">No. Terminal X is visual. The EAs come pre-compiled (.ex5). You just drag and drop or load presets.</p>
         </div>
         <div class="faq-item">
-          <p class="faq-q">What broker can I use? <span>+</span></p>
-          <p class="faq-a">Any MetaTrader 5 broker with XAUUSD (for Gold X1) or US30/DJ30 (for US30 X1). The EA auto-detects symbol suffixes (.s, +, .a, etc.). Vantage is recommended but not required.</p>
+          <p class="faq-q">What broker do I need? <span>+</span></p>
+          <p class="faq-a">Any major broker that supports MetaTrader 5. We recommend Vantage (50% off with our link).</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">How fast will I see results? <span>+</span></p>
+          <p class="faq-a">First leads in 7 days. First paying customers usually within 30–60 days. Depends on your offer quality and market size. If your offer sucks, nothing fixes that — but if it's good, we'll find buyers fast.</p>
         </div>
         <div class="faq-item">
           <p class="faq-q">Is this financial advice? <span>+</span></p>
-          <p class="faq-a">No. StratX provides trading research and software tools. We do not provide financial advice. Trading involves substantial risk of loss. Past performance (including backtested results) does not guarantee future results.</p>
+          <p class="faq-a">No. This is software and research tooling. Past performance does not guarantee future results. Trade responsibly.</p>
         </div>
         <div class="faq-item">
-          <p class="faq-q">What's included in the purchase? <span>+</span></p>
-          <p class="faq-a">Compiled EX5 file, preset files for all profiles, user manual (PDF), GC_M15_FEATURES.csv or YM_M15_FEATURES.csv (order-flow data), and lifetime updates.</p>
-        </div>
-        <div class="faq-item">
-          <p class="faq-q">Do I need a VPS? <span>+</span></p>
-          <p class="faq-a">Recommended for 24/5 operation. Any Windows VPS with MetaTrader 5 installed. The EA runs on your local computer as well, but must remain powered on during trading sessions.</p>
+          <p class="faq-q">Can I cancel anytime? <span>+</span></p>
+          <p class="faq-a">One-time payment = yours forever. Monthly plans = cancel anytime after month 1.</p>
         </div>
         <div class="faq-item">
           <p class="faq-q">What's the minimum balance? <span>+</span></p>
-          <p class="faq-a">Gold X1: $1,000 (Optimized risk) to $25,000 (Max risk). US30 X1: $2,000 (Optimized) to $25,000 (Max). Higher balances allow better risk management.</p>
+          <p class="faq-a">Gold X1: $1,000 (Optimized) to $25,000 (Max). US30 X1: $2,000 (Optimized) to $25,000 (Max).</p>
         </div>
-        <div class="faq-item">
-          <p class="faq-q">Can I get a refund? <span>+</span></p>
-          <p class="faq-a">Yes. 30-day money-back guarantee if the EA does not function as described. Contact sales@stratx.tech. No questions asked.</p>
-        </div>
-        <div class="faq-item">
-          <p class="faq-q">How do I receive the EA after purchase? <span>+</span></p>
-          <p class="faq-a">After Stripe payment confirmation, email your receipt/order details to sales@stratx.tech and you will receive your download link within 24 hours (usually within a few hours on weekdays). For Vantage discount purchases, include your Vantage account number and receive the discount code within 24 hours.</p>
-        </div>
+      </div>
+    </section>
+
+    <!-- FINAL URGENCY -->
+    <section class="urgency-section">
+      <div class="urgency-box">
+        <h2 class="urgency-title">Prices Rise £100 on August 31st</h2>
+        <p class="urgency-text">Every StratX product increases by £100. Current pricing is only available until then. Every day you wait is another day your competitors are stealing your customers.</p>
+        <a href="#offer" class="btn btn-primary" style="font-size: 18px; padding: 18px 40px;">LOCK IN TODAY'S PRICE →</a>
       </div>
     </section>
 
     <footer>
-      <div class="footer-content">
-        <div class="footer-brand">
-          <img src="assets/stratx-logo-header.png" alt="Strat X" width="120" height="36">
-          <p>Build. Optimise. Validate. Deploy. Professional trading research and software for systematic traders.</p>
-        </div>
-        <div class="footer-links">
-          <h4>Products</h4>
-          <ul>
-            <li><a href="#products">Gold X1</a></li>
-            <li><a href="#products">US30 X1</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#vantage">50% Off</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Community</h4>
-          <ul>
-            <li><a href="https://discord.gg/asG9yC4Ra" target="_blank" rel="noopener">Discord</a></li>
-            <li><a href="https://www.facebook.com/groups/stratxcommunity" target="_blank" rel="noopener">Facebook Group</a></li>
-            <li><a href="https://stratx-checklist.onrender.com" target="_blank" rel="noopener">Free Checklist</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Support</h4>
-          <ul>
-            <li><a href="mailto:sales@stratx.tech">sales@stratx.tech</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="https://stratx.tech">stratx.tech</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="tagline">BUILD. OPTIMISE. VALIDATE. DEPLOY.</p>
-        <p class="risk"><strong>Risk warning:</strong> Trading foreign exchange, indices, and CFDs carries a high level of risk and may not be suitable for all investors. Past performance, including backtested and simulated results, does not guarantee future results. Broker conditions including spread, slippage, latency, and execution quality can materially affect results. Always test on a demo account before using real funds. Use only risk capital you can afford to lose. The developers and sellers of this product accept no liability for any losses incurred through its use.</p>
-        <p class="fineprint">© 2026 StratX · <a href="https://stratx.tech">stratx.tech</a> · All rights reserved · Vantage Markets is a registered trademark of Vantage Markets Pty Ltd. StratX is not affiliated with Vantage Markets.</p>
-      </div>
+      <p class="risk"><strong>Risk warning:</strong> Trading forex, indices, and CFDs carries a high level of risk and may not be suitable for all investors. Past performance does not guarantee future results. Always test on a demo account. Use only risk capital you can afford to lose.</p>
+      <p class="fineprint">© 2026 StratX · <a href="https://stratx.tech" style="color: #5c5c5c;">stratx.tech</a> · All rights reserved</p>
     </footer>
   </div>
   <script>
@@ -428,31 +322,7 @@
         q.querySelector('span').textContent = isOpen ? '+' : '−';
       });
     });
-    // Initialize FAQ answers as hidden
     document.querySelectorAll('.faq-a').forEach(a => a.style.display = 'none');
-  </script>
-  <script>
-    // StratX price escalation: +£100 every 30 days from 2026-08-01 (prices below
-    // must stay in sync with the Stripe Payment Links — update them on each rise date)
-    (function () {
-      var epoch = new Date('2026-08-01T00:00:00Z');
-      var step = 100, interval = 30;
-      var days = Math.floor((Date.now() - epoch.getTime()) / 86400000);
-      var tier = Math.max(0, Math.floor(days / interval));
-      var bases = { 299: 299, 199: 199, 399: 399 };
-      var next = new Date(epoch.getTime() + (tier + 1) * interval * 86400000);
-      var nextStr = next.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-      if (tier > 0) {
-        document.querySelectorAll('.product-price, .pricing-amount').forEach(function (el) {
-          var text = el.textContent.replace(/[£,]/g, '').trim();
-          var base = parseInt(text, 10);
-          if (bases[base] !== undefined) el.textContent = '£' + (base + step * tier);
-        });
-      }
-      var banner = document.getElementById('price-banner');
-      banner.style.display = 'block';
-      banner.textContent = 'Launch pricing ends soon — every StratX EA rises by £' + step + ' on ' + nextStr + '. Lock in today’s price.';
-    })();
   </script>
 </body>
 </html>
