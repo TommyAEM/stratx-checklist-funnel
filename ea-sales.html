@@ -37,8 +37,6 @@
     .btn-primary:hover { background: var(--green-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 200, 83, 0.3); }
     .btn-secondary { background: transparent; color: var(--text); border: 2px solid var(--violet); }
     .btn-secondary:hover { background: var(--violet); }
-    .btn-vantage { background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%); color: #000; border: none; }
-    .btn-vantage:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3); }
     /* PROBLEM */
     .problem { padding: 48px 0; text-align: center; }
     .section-title { font-size: 32px; margin-bottom: 16px; }
@@ -58,7 +56,7 @@
     .sol-desc { color: var(--text-2); font-size: 15px; margin-bottom: 20px; }
     .sol-features { list-style: none; margin-bottom: 24px; }
     .sol-features li { padding: 6px 0; color: var(--text-2); font-size: 14px; display: flex; gap: 8px; }
-    .sol-features li::before { content: "✓"; color: var(--green); font-weight: 600; }
+    .sol-features li::before { content: "\2713"; color: var(--green); font-weight: 600; }
     /* PROOF TABLE */
     .proof { padding: 48px 0; background: var(--bg-2); text-align: center; }
     .proof-table { width: 100%; max-width: 680px; margin: 32px auto 0; border-collapse: collapse; }
@@ -66,23 +64,25 @@
     .proof-table td { padding: 14px 12px; border-bottom: 1px solid #262626; font-size: 16px; }
     .proof-table .green { color: var(--green); font-weight: 700; }
     .proof-note { color: var(--text-2); font-size: 13px; margin-top: 16px; }
-    /* OFFER */
-    .offer { padding: 48px 0; text-align: center; }
-    .offer-box { background: linear-gradient(135deg, rgba(0, 200, 83, 0.08), rgba(139, 47, 243, 0.08)); border: 2px solid var(--green); border-radius: 16px; padding: 40px; max-width: 600px; margin: 0 auto; }
-    .offer-label { font-size: 12px; letter-spacing: 0.12em; color: var(--gold); font-weight: 700; margin-bottom: 12px; }
-    .offer-title { font-size: 28px; margin-bottom: 16px; }
-    .offer-includes { list-style: none; text-align: left; max-width: 400px; margin: 0 auto 24px; }
-    .offer-includes li { padding: 8px 0; color: var(--text); font-size: 15px; display: flex; gap: 10px; }
-    .offer-includes li::before { content: "✓"; color: var(--green); font-weight: 600; }
-    .offer-value { color: var(--text-2); font-size: 14px; margin-bottom: 8px; text-decoration: line-through; }
-    .offer-price { font-size: 42px; font-weight: 700; color: var(--green-2); margin-bottom: 24px; }
-    .offer-note { color: var(--text-2); font-size: 13px; margin-bottom: 24px; }
+    /* PRICING CARDS */
+    .pricing-cards { padding: 48px 0; text-align: center; }
+    .cards-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 700px; margin: 32px auto 0; }
+    .card { background: var(--bg-2); border: 1px solid #262626; border-radius: 12px; padding: 24px; text-align: center; }
+    .card.highlight { border: 2px solid var(--green); }
+    .card-label { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+    .card-price { font-size: 32px; font-weight: 700; }
+    .card-note { font-size: 12px; color: var(--text-2); margin-bottom: 16px; }
     /* GUARANTEE */
     .guarantee { padding: 48px 0; text-align: center; }
     .guarantee-box { border: 1px solid var(--green); border-radius: 12px; padding: 32px; max-width: 600px; margin: 0 auto; }
     .guarantee-icon { font-size: 48px; margin-bottom: 12px; }
     .guarantee-title { font-size: 22px; margin-bottom: 12px; }
     .guarantee-text { color: var(--text-2); font-size: 15px; }
+    /* COMMUNITY */
+    .community { padding: 48px 0; text-align: center; }
+    .comm-box { border: 1px solid var(--violet); border-radius: 12px; padding: 32px; max-width: 560px; margin: 0 auto; }
+    .comm-title { font-size: 22px; margin-bottom: 12px; }
+    .comm-text { color: var(--text-2); font-size: 15px; margin-bottom: 20px; }
     /* FAQ */
     .faq { padding: 48px 0; background: var(--bg-2); }
     .faq-list { max-width: 640px; margin: 32px auto 0; }
@@ -94,17 +94,12 @@
     .urgency-box { background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 165, 0, 0.08)); border: 1px solid var(--gold); border-radius: 12px; padding: 32px; max-width: 560px; margin: 0 auto; }
     .urgency-title { font-size: 24px; margin-bottom: 12px; color: var(--gold); }
     .urgency-text { color: var(--text-2); font-size: 15px; margin-bottom: 24px; }
-    /* COMMUNITY */
-    .community { padding: 48px 0; text-align: center; }
-    .comm-box { border: 1px solid var(--violet); border-radius: 12px; padding: 32px; max-width: 560px; margin: 0 auto; }
-    .comm-title { font-size: 22px; margin-bottom: 12px; }
-    .comm-text { color: var(--text-2); font-size: 15px; margin-bottom: 20px; }
     /* FOOTER */
     footer { border-top: 1px solid #1c1c1c; padding: 32px 0; text-align: center; }
     .risk { font-size: 11px; color: #5c5c5c; max-width: 60em; margin: 0 auto 8px; }
     .fineprint { font-size: 11px; color: #4a4a4a; }
     @media (max-width: 768px) {
-      .sol-grid { grid-template-columns: 1fr; }
+      .sol-grid, .cards-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -115,21 +110,19 @@
       <nav class="nav-links">
         <a href="#products">Products</a>
         <a href="#pricing">Pricing</a>
-        <a href="#offer">Bundle</a>
         <a href="#faq">FAQ</a>
       </nav>
     </header>
 
     <!-- HERO -->
     <section class="hero">
-      <p class="kicker">Quantitative Strategy Research & Deployment</p>
+      <p class="kicker">Quantitative Strategy Research &amp; Deployment</p>
       <h1>Stop Guessing.<br>Start <span class="accent">Validating.</span></h1>
       <p class="sub">Build, test, and deploy rule-based trading systems in minutes — not months. No coding. No martingale. No grid. Just verified strategies backed by real tick data.</p>
-      <p class="urgency-line">⚠️ Prices rise £100 on Aug 31. Lock in now.</p>
+      <p class="urgency-line">&#9888; Prices rise \u00a3100 on Aug 31. Lock in now.</p>
       <div class="cta-group">
-        <a href="#offer" class="btn btn-primary">GET TERMINAL X + EAS →</a>
-        <a href="#pricing" class="btn btn-secondary">View Pricing →</a>
-        <a href="#community" class="btn btn-secondary">Free Community →</a>
+        <a href="#pricing" class="btn btn-primary">GET TERMINAL X + EAS \u2192</a>
+        <a href="#community" class="btn btn-secondary">Free Community \u2192</a>
       </div>
     </section>
 
@@ -138,10 +131,10 @@
       <h2 class="section-title">Why Most Traders Stay Stuck</h2>
       <p class="section-sub">You've spent years learning the markets. You know the patterns. But systematising that knowledge? That's where it falls apart.</p>
       <ul class="pain-list">
-        <li><span class="x">✕</span> Custom EA development costs thousands and takes months</li>
-        <li><span class="x">✕</span> Hiring developers leads to buggy code and broken logic</li>
-        <li><span class="x">✕</span> Free indicators are lagging and useless</li>
-        <li><span class="x">✕</span> Manual trading caps your income at how many hours you have left</li>
+        <li><span class="x">\u2717</span> Custom EA development costs thousands and takes months</li>
+        <li><span class="x">\u2717</span> Hiring developers leads to buggy code and broken logic</li>
+        <li><span class="x">\u2717</span> Free indicators are lagging and useless</li>
+        <li><span class="x">\u2717</span> Manual trading caps your income at how many hours you have left</li>
       </ul>
       <p class="pivot">You don't need another indicator. You need a validated system.</p>
     </section>
@@ -154,30 +147,30 @@
         <div class="sol-card featured">
           <span class="sol-badge">TERMINAL X</span>
           <h3 class="sol-title">The Strategy Builder</h3>
-          <p class="sol-price">£900 one-time</p>
+          <p class="sol-price">\u00a3900 one-time</p>
           <p class="sol-desc">Visual strategy builder. Define entry, exit, and risk parameters with drag-and-drop logic. Zero code required.</p>
           <ul class="sol-features">
             <li>7-Gate Validation (WR, PF, DD, TPY, walk-forward, MC, confluence)</li>
-            <li>No coding — if you can draw a box, you can build a strategy</li>
+            <li>No coding \u2014 if you can draw a box, you can build a strategy</li>
             <li>In-sample, out-of-sample, and walk-forward splits</li>
             <li>Monte Carlo robustness testing built in</li>
             <li>Lifetime updates included</li>
           </ul>
-          <a href="https://app.stratx.tech" target="_blank" class="btn btn-primary">Try Terminal X →</a>
+          <a href="https://app.stratx.tech" target="_blank" class="btn btn-primary">Try Terminal X \u2192</a>
         </div>
         <div class="sol-card">
           <span class="sol-badge" style="background: var(--violet);">STRATX EAS</span>
           <h3 class="sol-title">The Proven Executors</h3>
-          <p class="sol-price">Gold £299 · US30 £199 · Bundle £399</p>
+          <p class="sol-price">Gold \u00a3299 \u00b7 US30 \u00a3199</p>
           <p class="sol-desc">Don't want to build? Buy what's already validated. Backtested on live tick data. Reproduced trade-for-trade.</p>
           <ul class="sol-features">
-            <li>Gold X1 — 6-module portfolio for XAUUSD (76.3% WR)</li>
-            <li>US30 X1 — Failed Breakout Reversal for Dow Jones (70.8% WR)</li>
-            <li>Pre-compiled .ex5 files — just drag onto MT5 chart</li>
+            <li>Gold X1 \u2014 6-module portfolio for XAUUSD (76.3% WR)</li>
+            <li>US30 X1 \u2014 Failed Breakout Reversal for Dow Jones (70.8% WR)</li>
+            <li>Pre-compiled .ex5 files \u2014 just drag onto MT5 chart</li>
             <li>.set profiles for every risk level included</li>
             <li>Full user manuals + order-flow CSV data</li>
           </ul>
-          <a href="#pricing" class="btn btn-primary">Buy EAs →</a>
+          <a href="#pricing" class="btn btn-primary">Buy EAs \u2192</a>
         </div>
       </div>
     </section>
@@ -201,57 +194,43 @@
     </section>
 
     <!-- PRICING -->
-    <section class="offer" id="pricing">
+    <section class="pricing-cards" id="pricing">
       <h2 class="section-title">Simple Pricing. Lifetime Access.</h2>
       <p class="section-sub">One-time purchase. No subscriptions. No hidden fees.</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 700px; margin: 32px auto 0;">
-        <div style="background: var(--bg-2); border: 1px solid #262626; border-radius: 12px; padding: 24px; text-align: center;">
-          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 8px;">TERMINAL X</p>
-          <p style="font-size: 32px; font-weight: 700;">£900</p>
-          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 16px;">one-time</p>
-          <a href="https://app.stratx.tech" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Access Terminal X →</a>
+      <div class="cards-row">
+        <div class="card">
+          <p class="card-label">TERMINAL X</p>
+          <p class="card-price">\u00a3900</p>
+          <p class="card-note">one-time</p>
+          <a href="https://app.stratx.tech" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Access Terminal X \u2192</a>
         </div>
-        <div style="background: var(--bg-2); border: 1px solid #262626; border-radius: 12px; padding: 24px; text-align: center;">
-          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 8px;">GOLD X1</p>
-          <p style="font-size: 32px; font-weight: 700;">£299</p>
-          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 16px;">one-time</p>
-          <a href="https://buy.stripe.com/aFa0ifMG0BwajUf0ecEw02" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Buy Gold X1 →</a>
+        <div class="card">
+          <p class="card-label">GOLD X1</p>
+          <p class="card-price">\u00a3299</p>
+          <p class="card-note">one-time</p>
+          <a href="https://buy.stripe.com/aFa0ifMG0BwajUf0ecEw02" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Buy Gold X1 \u2192</a>
         </div>
-        <div style="background: var(--bg-2); border: 1px solid #262626; border-radius: 12px; padding: 24px; text-align: center;">
-          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 8px;">US30 X1</p>
-          <p style="font-size: 32px; font-weight: 700;">£199</p>
-          <p style="font-size: 12px; color: var(--text-2); margin-bottom: 16px;">one-time</p>
-          <a href="https://buy.stripe.com/4gM5kC2ZUac6eAaf0ecEw03" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Buy US30 X1 →</a>
+        <div class="card">
+          <p class="card-label">US30 X1</p>
+          <p class="card-price">\u00a3199</p>
+          <p class="card-note">one-time</p>
+          <a href="https://buy.stripe.com/4gM5kC2ZUac6eAaf0ecEw03" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Buy US30 X1 \u2192</a>
         </div>
-      </div>
-    </section>
-
-    <!-- GRAND SLAM OFFER -->
-    <section class="offer" id="offer">
-      <div class="offer-box">
-        <p class="offer-label">🔥 LIMITED-TIME BUNDLE 🔥</p>
-        <h2 class="offer-title">The All-In Package</h2>
-        <p class="sol-desc">Everything you need. One price. Stop buying tools separately.</p>
-        <ul class="offer-includes">
-          <li>Terminal X (Full Strategy Builder License)</li>
-          <li>Gold X1 EA (Compiled .ex5 + Set Files + Manual)</li>
-          <li>US30 X1 EA (Compiled .ex5 + Set Files + Manual)</li>
-          <li>Community Access (Discord + Private Group)</li>
-          <li>Free Validation Checklist (PDF Methodology)</li>
-        </ul>
-        <p class="offer-value">Total Value: £1,598+</p>
-        <p class="offer-price">£1,399</p>
-        <p class="offer-note">Save £200 vs buying individually. Price rises £100 per product on Aug 31.</p>
-        <a href="https://buy.stripe.com/bJeaEWbwqbga63Ef0ecEw04" class="btn btn-primary" style="font-size: 18px; padding: 18px 40px;">CLAIM YOUR DISCOUNTED ACCESS →</a>
+        <div class="card highlight">
+          <p class="card-label">EA BUNDLE</p>
+          <p class="card-price" style="color: var(--green-2);">\u00a3399</p>
+          <p class="card-note">Save \u00a399 vs buying individually</p>
+          <a href="https://buy.stripe.com/bJeaEWbwqbga63Ef0ecEw04" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Buy Bundle \u2192</a>
+        </div>
       </div>
     </section>
 
     <!-- GUARANTEE -->
     <section class="guarantee">
       <div class="guarantee-box">
-        <div class="guarantee-icon">🛡️</div>
+        <div class="guarantee-icon">\ud83d\udee1\ufe0f</div>
         <h2 class="guarantee-title">The 90-Day Guarantee</h2>
-        <p class="guarantee-text">If you implement Terminal X and our EAs within 90 days and don't see a measurable improvement in your strategy validation process — or if the EAs don't perform as backtested — you get a full refund. No questions asked. We deliver or we don't charge.</p>
+        <p class="guarantee-text">If you implement Terminal X and our EAs within 90 days and don't see a measurable improvement in your strategy validation process \u2014 or if the EAs don't perform as backtested \u2014 you get a full refund. No questions asked. We deliver or we don't charge.</p>
       </div>
     </section>
 
@@ -261,8 +240,8 @@
         <h2 class="comm-title">Free Community</h2>
         <p class="comm-text">Join while we're building. Strategy discussions, early access to validated plays, direct line to the team. No hype. No signals. Just traders who test before they risk.</p>
         <div class="cta-group">
-          <a href="https://discord.gg/asG9yC4Ra" target="_blank" class="btn btn-primary">Join the Discord →</a>
-          <a href="https://stratx-checklist.onrender.com" target="_blank" class="btn btn-secondary">Free Validation Checklist →</a>
+          <a href="https://discord.gg/asG9yC4Ra" target="_blank" class="btn btn-primary">Join the Discord \u2192</a>
+          <a href="https://stratx-checklist.onrender.com" target="_blank" class="btn btn-secondary">Free Validation Checklist \u2192</a>
         </div>
       </div>
     </section>
@@ -281,7 +260,7 @@
         </div>
         <div class="faq-item">
           <p class="faq-q">How fast will I see results? <span>+</span></p>
-          <p class="faq-a">First leads in 7 days. First paying customers usually within 30–60 days. Depends on your offer quality and market size. If your offer sucks, nothing fixes that — but if it's good, we'll find buyers fast.</p>
+          <p class="faq-a">First leads in 7 days. First paying customers usually within 30\u201360 days. Depends on your offer quality and market size. If your offer sucks, nothing fixes that \u2014 but if it's good, we'll find buyers fast.</p>
         </div>
         <div class="faq-item">
           <p class="faq-q">Is this financial advice? <span>+</span></p>
@@ -301,25 +280,24 @@
     <!-- FINAL URGENCY -->
     <section class="urgency-section">
       <div class="urgency-box">
-        <h2 class="urgency-title">Prices Rise £100 on August 31st</h2>
-        <p class="urgency-text">Every StratX product increases by £100. Current pricing is only available until then. Every day you wait is another day your competitors are stealing your customers.</p>
-        <a href="#offer" class="btn btn-primary" style="font-size: 18px; padding: 18px 40px;">LOCK IN TODAY'S PRICE →</a>
+        <h2 class="urgency-title">Prices Rise \u00a3100 on August 31st</h2>
+        <p class="urgency-text">Every StratX product increases by \u00a3100. Current pricing is only available until then. Every day you wait is another day your competitors are stealing your customers.</p>
+        <a href="#pricing" class="btn btn-primary" style="font-size: 18px; padding: 18px 40px;">LOCK IN TODAY'S PRICE \u2192</a>
       </div>
     </section>
 
     <footer>
       <p class="risk"><strong>Risk warning:</strong> Trading forex, indices, and CFDs carries a high level of risk and may not be suitable for all investors. Past performance does not guarantee future results. Always test on a demo account. Use only risk capital you can afford to lose.</p>
-      <p class="fineprint">© 2026 StratX · <a href="https://stratx.tech" style="color: #5c5c5c;">stratx.tech</a> · All rights reserved</p>
+      <p class="fineprint">\u00a9 2026 StratX \u00b7 <a href="https://stratx.tech" style="color: #5c5c5c;">stratx.tech</a> \u00b7 All rights reserved</p>
     </footer>
   </div>
   <script>
-    // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
         const a = q.nextElementSibling;
         const isOpen = a.style.display === 'block';
         a.style.display = isOpen ? 'none' : 'block';
-        q.querySelector('span').textContent = isOpen ? '+' : '−';
+        q.querySelector('span').textContent = isOpen ? '+' : '\u2212';
       });
     });
     document.querySelectorAll('.faq-a').forEach(a => a.style.display = 'none');
