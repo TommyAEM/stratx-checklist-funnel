@@ -44,7 +44,7 @@ vercel --prod --yes
 
 1. **Activate formsubmit** (see above) — one click in sales@stratx.tech inbox, first thing.
 2. **Render auto-deploy is broken** — GitHub webhook no longer triggers deploys (verified 2026-07-31: file is on GitHub main, Render still serves old snapshot, `/ea-sales.html` → 404). Fix in Render dashboard or migrate fully to Vercel.
-3. **Discord activation** — `growth/outreach/discord_community.py` is ready; needs a channel webhook URL (30 sec: Strat X server → #community-floor → Integrations → Webhooks → New Webhook). The old bot token is flagged/broken (403 on all guild endpoints); a fresh bot app requires the Developer Portal and will need re-inviting.
+3. ~~Discord activation~~ **DONE 2026-08-01** — webhook wired (`discord_community.py` posts via webhook; revival announcement already posted, HTTP 204). Repost anytime: `python discord_community.py announce`.
 4. **Custom domain**: currently `stratx-checklist.onrender.com`. To move to `go.stratx.tech`, add a custom domain in the Render service settings and point a CNAME at the target Render gives you — needs Tommy's DNS access wherever stratx.tech's registrar/DNS panel is (nameservers currently `apollo/athena.dns-parking.com`).
 5. **Analytics**: no tracking pixel yet — add GA4/Meta pixel before running any paid traffic (plugin has an analytics-setup skill for this).
 6. **Upgrade lead capture**: formsubmit.co emails each lead one at a time — fine at low volume. Move to ConvertKit/MailerLite once volume justifies a real list + welcome sequence.
@@ -53,6 +53,18 @@ vercel --prod --yes
    - Post the checklist natively in the "StratX Community" Facebook group — it's pure education, fits the group's existing register
    - Pin it in any forex/trading Discord or Skool communities Tommy is already in
    - Once a few leads come in, this is what feeds the outreach pipeline from [[project_outreach_risk_tolerance_by_stage]]
+
+## EA fulfillment — LIVE 2026-08-01
+
+Automated post-purchase email delivery of the EA packages (EX5 + .set files + manual + install
+steps + support/Discord/Vantage offer). Flow: Stripe Payment Link → redirect to
+`https://engine.stratx.tech/fulfill/?email={CUSTOMER_EMAIL}&p=<product>&k=<secret>` → VPS Flask
+service emails the buyer instantly → order logged.
+
+**TODO (needs Tommy, ~2 min, Stripe dashboard):** set the "Redirect after purchase" URL on each
+of the 3 Payment Links (Gold/US30/Bundle) — exact URLs in
+`Documents/EA-Marketplace-Launch/FULFILLMENT_SYSTEM.md`. Until then buyers only see the Stripe
+confirmation page and no email goes out.
 
 ## A/B test ideas (from plugin's optin-funnel skill)
 
